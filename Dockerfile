@@ -79,6 +79,10 @@ echo "sudo ldconfig" >> /home/docker/.bashrc
 #**************************
 #*  Config Startup Items  *
 #**************************
+# Add vim rc
+ADD .vimrc /home/docker/
+ADD .flake8 /home/docker/
+
 RUN chmod +x /tmp/devenv.sh && \
 sed -i -e "s/Defaults    requiretty.*/ #Defaults    requiretty/g" /etc/sudoers && \
 # Initialize MySQL database and set Mysql root password
@@ -89,8 +93,6 @@ ln -s /home/docker/dev_data/oam /home/docker/oam && \
 echo "fabfile = ~/oam/lib/fabfile.py" >> /home/docker/.fabricrc && \
 chown -R docker:docker /home/docker
 
-# Add vim rc
-ADD .vimrc /home/docker/
 # Install vim plugin
 # Color scheme
 # Setup Pathogen to manage your plugins
