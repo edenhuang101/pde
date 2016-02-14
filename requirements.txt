@@ -1,0 +1,10 @@
+fabric
+ipython
+flake8
+fake-factory
+MySQL-python
+python-daemon
+ecks
+python-nmap
+scapy
+ping
