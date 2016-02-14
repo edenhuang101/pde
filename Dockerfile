@@ -13,8 +13,6 @@ MAINTAINER edenhuang@truetel.com
 ADD devenv.sh /tmp/
 ADD mysql_setup.sql /tmp/
 ADD my.cnf /etc/
-# requirements.txt is python plugin package list
-ADD requirements.txt /usr/local/src/requirements.txt
 
 RUN yum clean all && \
 yum -y update && \
@@ -40,9 +38,12 @@ rm -f Python-2.7.10.tgz && \
 rm -rf Python-2.7.10 && \
 # Install ezsetup and pip
 wget https://bootstrap.pypa.io/ez_setup.py -O - | /usr/local/bin/python2.7 && \
-/usr/local/bin/easy_install-2.7 pip && \
+/usr/local/bin/easy_install-2.7 pip
+
 # Install python plugin
-/usr/local/bin/pip install --upgrade pip && \
+# requirements.txt is python plugin package list
+ADD requirements.txt /usr/local/src/requirements.txt
+RUN /usr/local/bin/pip install --upgrade pip && \
 /usr/local/bin/pip install -r /usr/local/src/requirements.txt && \
 /usr/local/bin/easy_install-2.7 path.py && \
 /usr/local/bin/easy_install-2.7 prettytable && \
@@ -75,10 +76,6 @@ echo "alias vi='/usr/local/bin/vim'" >> /home/docker/.bashrc && \
 echo "ldconfig" >> ~/.bashrc && \
 echo "sudo ldconfig" >> /home/docker/.bashrc
 
-# Add vim plugin
-ADD vim-plugin.tar.gz /home/docker/
-
-
 #**************************
 #*  Config Startup Items  *
 #**************************
@@ -91,6 +88,29 @@ echo ". ~/oam/oamrtenv.sh" >> /home/docker/.bashrc && \
 ln -s /home/docker/dev_data/oam /home/docker/oam && \
 echo "fabfile = ~/oam/lib/fabfile.py" >> /home/docker/.fabricrc && \
 chown -R docker:docker /home/docker
+
+# Add vim rc
+ADD .vimrc /home/docker/
+# Install vim plugin
+# Color scheme
+# Setup Pathogen to manage your plugins
+# Settings for ctrlp
+# Settings for vim-powerline
+# Settings for jedi-vim
+# Python folding
+# Settings for NERDTree
+RUN su - docker -c "mkdir -p ~/.vim/colors && cd ~/.vim/colors; \
+    wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400; \
+    mkdir -p ~/.vim/autoload ~/.vim/bundle; \
+    curl -so ~/.vim/autoload/pathogen.vim \
+    https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim; \
+    cd ~/.vim/bundle; git clone https://github.com/kien/ctrlp.vim.git;\
+    cd ~/.vim/bundle;git clone git://github.com/Lokaltog/vim-powerline.git;\
+    cd ~/.vim/bundle;git clone git://github.com/davidhalter/jedi-vim.git;\
+    cd ~/.vim/bundle;git clone https://github.com/nvie/vim-flake8;\
+    mkdir -p ~/.vim/ftplugin;\
+    wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492;\
+    cd ~/.vim/bundle;git clone https://github.com/scrooloose/nerdtree.git"
 
 USER docker
 WORKDIR /home/docker

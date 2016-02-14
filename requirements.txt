@@ -8,3 +8,4 @@ ecks
 python-nmap
 scapy
 ping
+jedi
