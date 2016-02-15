@@ -41,10 +41,18 @@ wget https://bootstrap.pypa.io/ez_setup.py -O - | /usr/local/bin/python2.7 && \
 /usr/local/bin/easy_install-2.7 pip
 
 # Install python plugin
-# requirements.txt is python plugin package list
-ADD requirements.txt /usr/local/src/requirements.txt
 RUN /usr/local/bin/pip install --upgrade pip && \
-/usr/local/bin/pip install -r /usr/local/src/requirements.txt && \
+/usr/local/bin/pip install fabric && \
+/usr/local/bin/pip install ipython && \
+/usr/local/bin/pip install flake8 && \
+/usr/local/bin/pip install fake-factory && \
+/usr/local/bin/pip install MySQL-python && \
+/usr/local/bin/pip install python-daemon && \
+/usr/local/bin/pip install ecks && \
+/usr/local/bin/pip install python-nmap && \
+/usr/local/bin/pip install scapy && \
+/usr/local/bin/pip install ping && \
+/usr/local/bin/pip install jedi && \
 /usr/local/bin/easy_install-2.7 path.py && \
 /usr/local/bin/easy_install-2.7 prettytable && \
 cd /usr/local/src && wget -O python-smpplib.zip https://github.com/podshumok/python-smpplib/archive/master.zip && \
