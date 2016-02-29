@@ -66,10 +66,10 @@ cd mailsend && /bin/sh ./configure --with-openssl=/usr && \
 make install
 
 # install vim
-RUN hg clone https://vim.googlecode.com/hg/ vim && \
+RUN cd /usr/local/src && hg clone https://bitbucket.org/vim-mirror/vim vim && \
 export vi_cv_path_python=/usr/local/bin/python2.7 && \
 export vi_cv_path_python_pfx=/usr/local && \
-cd /vim/src && \
+cd vim/src && \
 ./configure LDFLAGS="-Wl,--rpath=/usr/local/lib" --enable-pythoninterp \
             --with-features=huge --with-python-config-dir=/usr/local/lib/python2.7/config && \
 make && make install
