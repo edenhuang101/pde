@@ -67,11 +67,11 @@ make install
 
 # install vim
 RUN hg clone https://vim.googlecode.com/hg/ vim && \
-echo "/usr/local/lib" >> /etc/ld.so.conf && ldconfig && \
 export vi_cv_path_python=/usr/local/bin/python2.7 && \
 export vi_cv_path_python_pfx=/usr/local && \
 cd /vim/src && \
-./configure --enable-pythoninterp --with-features=huge --with-python-config-dir=/usr/local/lib/python2.7/config && \
+./configure LDFLAGS="-Wl,--rpath=/usr/local/lib" --enable-pythoninterp \
+            --with-features=huge --with-python-config-dir=/usr/local/lib/python2.7/config && \
 make && make install
 
 # Add docker account
