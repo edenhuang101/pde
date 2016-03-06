@@ -52,10 +52,10 @@ inoremap <C-n> :nohl<CR>
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
+<c-j> <c-w>j
+<c-k> <c-w>k
+<c-l> <c-w>l
+<c-h> <c-w>h
 map <c-v> <c-w>v
 map <c-q> <c-w>q
 
