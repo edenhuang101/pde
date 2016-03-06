@@ -9,3 +9,5 @@ python-nmap
 scapy
 ping
 jedi
+configobj
+ipdb
