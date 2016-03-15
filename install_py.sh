@@ -109,6 +109,8 @@ fi
 /usr/local/bin/pip install jedi && \
 /usr/local/bin/pip install configobj && \
 /usr/local/bin/pip install ipdb && \
+/usr/local/bin/pip install sshtunnel && \
+/usr/local/bin/pip install ftpretty && \
 /usr/local/bin/easy_install-2.7 path.py && \
 /usr/local/bin/easy_install-2.7 Ptable
 # insatall MySQL-python
