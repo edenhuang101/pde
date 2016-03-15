@@ -56,8 +56,8 @@ inoremap <C-n> :nohl<CR>
 <c-k> <c-w>k
 <c-l> <c-w>l
 <c-h> <c-w>h
-map <c-v> <c-w>v
-map <c-q> <c-w>q
+"" map <c-v> <c-w>v
+"" map <c-q> <c-w>q
 
 
 " easier moving between tabs
