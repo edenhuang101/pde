@@ -57,6 +57,7 @@ RUN /usr/local/bin/pip install --upgrade pip && \
 /usr/local/bin/pip install ipdb && \
 /usr/local/bin/pip install sshtunnel && \
 /usr/local/bin/pip install ftpretty && \
+/usr/local/bin/pip install colorlog && \
 /usr/local/bin/easy_install-2.7 path.py && \
 /usr/local/bin/easy_install-2.7 Ptable && \
 cd /usr/local/src && wget -O python-smpplib.zip https://github.com/podshumok/python-smpplib/archive/master.zip && \
