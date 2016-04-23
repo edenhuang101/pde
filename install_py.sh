@@ -5,6 +5,7 @@ echo "Check OS python version  ......."
 python_version=$(python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))')
 python_major=$(python -c 'import sys; print(".".join(map(str, sys.version_info[0:1])))')
 python_minor=$(python -c 'import sys; print(".".join(map(str, sys.version_info[1:2])))')
+
 if [[ -z "$python_version" ]]; then
     echo "No Python!"
 else
@@ -113,7 +114,8 @@ fi
 /usr/local/bin/pip install ftpretty && \
 /usr/local/bin/pip install colorlog && \
 /usr/local/bin/easy_install-2.7 path.py && \
-/usr/local/bin/easy_install-2.7 Ptable
+/usr/local/bin/easy_install-2.7 Ptable && \
+/usr/local/bin/easy_install-2.7 virtualenv
 # insatall MySQL-python
 if [ -f /usr/bin/mysql_config ]; then
     /usr/local/bin/pip install MySQL-python
