@@ -60,6 +60,7 @@ RUN /usr/local/bin/pip install --upgrade pip && \
 /usr/local/bin/pip install colorlog && \
 /usr/local/bin/easy_install-2.7 path.py && \
 /usr/local/bin/easy_install-2.7 Ptable && \
+/usr/local/bin/easy_install-2.7 virtualenv && \
 cd /usr/local/src && wget -O python-smpplib.zip https://github.com/podshumok/python-smpplib/archive/master.zip && \
 unzip python-smpplib.zip && mv python-smpplib-master python-smpplib && \
 cd python-smpplib && python2.7 setup.py install
