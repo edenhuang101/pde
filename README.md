@@ -1,7 +1,7 @@
 # Information
 docker pull edenhuang/pde
 docker run -it -h pde1 --name pde1 -p 3306:3306 -v /dev_data:/home/docker/dev_data  pde
-docker attach oam01
+docker attach pde1
 
 ### if want to use Mysql
 sudo service mysql start
