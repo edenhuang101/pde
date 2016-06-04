@@ -43,6 +43,11 @@ rm -rf Python-2.7.10 && \
 wget https://bootstrap.pypa.io/ez_setup.py -O - | /usr/local/bin/python2.7 && \
 /usr/local/bin/easy_install-2.7 pip
 
+# install oracle client 11
+RUN cd /usr/local/src && rpm -ivh oracle-instantclient11.2-basic-11.2.0.4.0-1.x86_64.rpm && \
+rpm -ivh oracle-instantclient11.2-devel-11.2.0.4.0-1.x86_64.rpm && \
+rpm -ivh oracle-instantclient11.2-sqlplus-11.2.0.4.0-1.x86_64.rpm
+
 # Install python plugin
 RUN /usr/local/bin/pip install --upgrade pip && \
 /usr/local/bin/pip install fabric && \
@@ -68,11 +73,6 @@ RUN /usr/local/bin/pip install --upgrade pip && \
 cd /usr/local/src && wget -O python-smpplib.zip https://github.com/podshumok/python-smpplib/archive/master.zip && \
 unzip python-smpplib.zip && mv python-smpplib-master python-smpplib && \
 cd python-smpplib && python2.7 setup.py install
-
-# install oracle client 11
-RUN cd /usr/local/src && rpm -ivh oracle-instantclient11.2-basic-11.2.0.4.0-1.x86_64.rpm && \
-rpm -ivh oracle-instantclient11.2-devel-11.2.0.4.0-1.x86_64.rpm && \
-rpm -ivh oracle-instantclient11.2-sqlplus-11.2.0.4.0-1.x86_64.rpm
 
 # install mailsend
 RUN cd /usr/local/src && wget -O mailsend.zip https://github.com/muquit/mailsend/archive/master.zip && \
