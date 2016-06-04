@@ -13,6 +13,9 @@ MAINTAINER edenhuang@truetel.com
 ADD devenv.sh /tmp/
 ADD mysql_setup.sql /tmp/
 ADD my.cnf /etc/
+ADD oracle-instantclient11.2-basic-11.2.0.4.0-1.x86_64.rpm /usr/local/src
+ADD oracle-instantclient11.2-devel-11.2.0.4.0-1.x86_64.rpm /usr/local/src
+ADD oracle-instantclient11.2-sqlplus-11.2.0.4.0-1.x86_64.rpm /usr/local/src
 
 RUN yum clean all && \
 yum -y update && \
