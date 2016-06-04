@@ -61,6 +61,7 @@ RUN /usr/local/bin/pip install --upgrade pip && \
 /usr/local/bin/pip install sshtunnel && \
 /usr/local/bin/pip install ftpretty && \
 /usr/local/bin/pip install colorlog && \
+/usr/local/bin/pip install cx-Oracle && \
 /usr/local/bin/easy_install-2.7 path.py && \
 /usr/local/bin/easy_install-2.7 Ptable && \
 /usr/local/bin/easy_install-2.7 virtualenv && \
