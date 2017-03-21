@@ -25,20 +25,21 @@ yum -y install sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap
 yum -y install make automake gcc gcc-c++ kernel-devel git-core && \
 yum -y install wget tar sudo hg unzip which tree && \
 yum -y install openssh* net-snmp-utils nmap tcpdump && \
+yum -y install cairo-devel pango-devel
 # Install MySQL
-yum -y localinstall http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm && \
+RUN yum -y localinstall http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm && \
 yum -y install mysql-community-server && \
 yum -y install mysql-community-devel && \
 rm -fr /var/cache/*
 
 # Install python
-RUN wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz && \
-tar -zxf Python-2.7.10.tgz && \
-cd Python-2.7.10 && \
+RUN wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz && \
+tar -zxf Python-2.7.12.tgz && \
+cd Python-2.7.12 && \
 ./configure --prefix=/usr/local --enable-unicode=ucs4 --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib" && \
 make && make altinstall && \
-rm -f Python-2.7.10.tgz && \
-rm -rf Python-2.7.10 && \
+rm -f Python-2.7.12.tgz && \
+rm -rf Python-2.7.12 && \
 # Install ezsetup and pip
 wget https://bootstrap.pypa.io/ez_setup.py -O - | /usr/local/bin/python2.7 && \
 /usr/local/bin/easy_install-2.7 pip
@@ -67,6 +68,10 @@ RUN /usr/local/bin/pip install --upgrade pip && \
 /usr/local/bin/pip install ftpretty && \
 /usr/local/bin/pip install colorlog && \
 /usr/local/bin/pip install cx-Oracle && \
+/usr/local/bin/pip install python-hpilo && \
+/usr/local/bin/pip install pysnmp && \
+/usr/local/bin/pip install requests && \
+/usr/local/bin/pip install numpy && \
 /usr/local/bin/easy_install-2.7 path.py && \
 /usr/local/bin/easy_install-2.7 Ptable && \
 /usr/local/bin/easy_install-2.7 virtualenv && \
@@ -88,6 +93,15 @@ cd vim/src && \
 ./configure LDFLAGS="-Wl,--rpath=/usr/local/lib" --enable-pythoninterp \
             --with-features=huge --with-python-config-dir=/usr/local/lib/python2.7/config && \
 make && make install
+
+# install gnuplot
+RUN wget -O gnuplot-5.0.6.tar.gz \
+    https://sourceforge.net/projects/gnuplot/files/gnuplot/5.0.6/gnuplot-5.0.6.tar.gz/download && \
+tar -zxvf gnuplot-5.0.6.tar.gz && \
+cd gnuplot-5.0.6 && \
+./configure && \
+make && \
+make install
 
 # Add docker account
 RUN useradd docker && echo "docker:docker" | chpasswd && \

@@ -113,6 +113,10 @@ fi
 /usr/local/bin/pip install sshtunnel && \
 /usr/local/bin/pip install ftpretty && \
 /usr/local/bin/pip install colorlog && \
+/usr/local/bin/pip install python-hpilo && \
+/usr/local/bin/pip install pysnmp && \
+/usr/local/bin/pip install requests && \
+/usr/local/bin/pip install numpy && \
 /usr/local/bin/easy_install-2.7 path.py && \
 /usr/local/bin/easy_install-2.7 Ptable && \
 /usr/local/bin/easy_install-2.7 virtualenv

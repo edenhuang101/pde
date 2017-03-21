@@ -35,10 +35,10 @@ if [ "$is_local_vim" == "True" ] || [ "$is_os_vim" == "True" ]; then
     cd ~/.vim/bundle;git clone https://github.com/nvie/vim-flake8 ;\
     cd ~/.vim/bundle;git clone https://github.com/scrooloose/nerdtree.git
     # get config file
-    wget -O ~/.vimrc  http://54.183.79.133/vimrc &&  \
-    wget -O ~/.flake8  http://54.183.79.133/flake8 && \
-    mkdir -p $HOME/.config && \
-    wget -O $HOME/.config/flake8  http://54.183.79.133/flake8
+    wget -O ~/.vimrc wget https://www.dropbox.com/s/p4o8zvf7a2ytrp3/vimrc?dl=0; \
+    wget -O ~/.flake8 wget https://www.dropbox.com/s/yhacvkgvn4rtbc3/flake8?dl=0; \
+    mkdir -p $HOME/.config; \
+    wget -O $HOME/.config/flake8 https://www.dropbox.com/s/yhacvkgvn4rtbc3/flake8?dl=0
 fi
 }
 

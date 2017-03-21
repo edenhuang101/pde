@@ -2,7 +2,6 @@ fabric
 ipython
 flake8
 fake-factory
-MySQL-python
 python-daemon
 ecks
 python-nmap
@@ -11,3 +10,8 @@ ping
 jedi
 configobj
 ipdb
+colorlog
+python-hpilo
+pysnmp
+requests
+numpy
