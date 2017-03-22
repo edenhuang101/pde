@@ -119,6 +119,7 @@ echo "sudo ldconfig" >> /home/docker/.bashrc
 # Add vim rc
 ADD .vimrc /home/docker/
 ADD .flake8 /home/docker/
+ADD oam_sample.tar.gz /home/docker/
 
 RUN chmod +x /tmp/devenv.sh && \
 sed -i -e "s/Defaults    requiretty.*/ #Defaults    requiretty/g" /etc/sudoers && \
@@ -126,7 +127,6 @@ sed -i -e "s/Defaults    requiretty.*/ #Defaults    requiretty/g" /etc/sudoers &
 su - docker -c "export MYSQL_PASS=P@ssw0rd;export MYSQL_DB=tctas;export MYSQL_CLIENTADDR=%; \
 export APP_USER=tasadm;export APP_PASS=tasadm;/tmp/devenv.sh" && \
 echo ". ~/oam/oamrtenv.sh" >> /home/docker/.bashrc && \
-ln -s /home/docker/dev_data/oam /home/docker/oam && \
 echo "fabfile = ~/oam/lib/fabfile.py" >> /home/docker/.fabricrc && \
 chown -R docker:docker /home/docker
 
@@ -151,6 +151,7 @@ RUN su - docker -c "mkdir -p ~/.vim/colors && cd ~/.vim/colors; \
     wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492;\
     cd ~/.vim/bundle;git clone https://github.com/scrooloose/nerdtree.git"
 
+RUN mv /home/docker/oam_sample /home/docker/oam
 USER docker
 WORKDIR /home/docker
 
