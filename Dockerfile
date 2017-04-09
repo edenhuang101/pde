@@ -47,7 +47,8 @@ wget https://bootstrap.pypa.io/ez_setup.py -O - | /usr/local/bin/python2.7 && \
 # install oracle client 11
 RUN cd /usr/local/src && rpm -ivh oracle-instantclient11.2-basic-11.2.0.4.0-1.x86_64.rpm && \
 rpm -ivh oracle-instantclient11.2-devel-11.2.0.4.0-1.x86_64.rpm && \
-rpm -ivh oracle-instantclient11.2-sqlplus-11.2.0.4.0-1.x86_64.rpm
+rpm -ivh oracle-instantclient11.2-sqlplus-11.2.0.4.0-1.x86_64.rpm && \
+rm -f oracle*.rpm
 
 # Install python plugin
 RUN /usr/local/bin/pip install --upgrade pip && \
@@ -83,7 +84,8 @@ cd python-smpplib && python2.7 setup.py install
 RUN cd /usr/local/src && wget -O mailsend.zip https://github.com/muquit/mailsend/archive/master.zip && \
 unzip mailsend.zip && mv mailsend-master mailsend && \
 cd mailsend && /bin/sh ./configure --with-openssl=/usr && \
-make install
+make install && \
+cd ..;rm -rf mailsend
 
 # install vim
 RUN cd /usr/local/src && hg clone https://bitbucket.org/vim-mirror/vim vim && \
@@ -92,7 +94,8 @@ export vi_cv_path_python_pfx=/usr/local && \
 cd vim/src && \
 ./configure LDFLAGS="-Wl,--rpath=/usr/local/lib" --enable-pythoninterp \
             --with-features=huge --with-python-config-dir=/usr/local/lib/python2.7/config && \
-make && make install
+make && make install && \
+cd ../../;rm -rf vim
 
 # install gnuplot
 RUN cd /usr/local/src && wget -O gnuplot-5.0.6.tar.gz \
