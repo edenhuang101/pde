@@ -13,8 +13,15 @@ sudo service mysql start
 [Ctrl] + P and [Ctrl] + Q
 
 # Mysql Info
-mysql  Ver 14.14 Distrib 5.6.28, for Linux (x86_64)
+mysql  Ver 14.14 Distrib 5.6.35, for Linux (x86_64)
 
 id:root password:P@ssw0rd
 id:tasadm password:tasadm
 default database: tctas
+
+# JAVA Info
+java version "1.8.0_121"
+Java(TM) SE Runtime Environment (build 1.8.0_121-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 25.121-b13, mixed mode)
+
+PATH: /opt/jdk1.8.0_121

@@ -33,12 +33,12 @@ yum -y install mysql-community-devel && \
 rm -fr /var/cache/*
 
 # Install python
-RUN wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz && \
+RUN cd /usr/local/src && wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz && \
 tar -zxf Python-2.7.12.tgz && \
 cd Python-2.7.12 && \
 ./configure --prefix=/usr/local --enable-unicode=ucs4 --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib" && \
 make && make altinstall && \
-rm -f Python-2.7.12.tgz && \
+cd ..;rm -f Python-2.7.12.tgz && \
 rm -rf Python-2.7.12 && \
 # Install ezsetup and pip
 wget https://bootstrap.pypa.io/ez_setup.py -O - | /usr/local/bin/python2.7 && \
@@ -72,7 +72,7 @@ RUN /usr/local/bin/pip install --upgrade pip && \
 /usr/local/bin/pip install pysnmp && \
 /usr/local/bin/pip install requests && \
 /usr/local/bin/pip install numpy && \
-/usr/local/bin/easy_install-2.7 path.py && \
+/usr/local/bin/easy_install-2.7 "path.py==8.2.1" && \
 /usr/local/bin/easy_install-2.7 Ptable && \
 /usr/local/bin/easy_install-2.7 virtualenv && \
 cd /usr/local/src && wget -O python-smpplib.zip https://github.com/podshumok/python-smpplib/archive/master.zip && \
@@ -95,13 +95,27 @@ cd vim/src && \
 make && make install
 
 # install gnuplot
-RUN wget -O gnuplot-5.0.6.tar.gz \
+RUN cd /usr/local/src && wget -O gnuplot-5.0.6.tar.gz \
     https://sourceforge.net/projects/gnuplot/files/gnuplot/5.0.6/gnuplot-5.0.6.tar.gz/download && \
 tar -zxvf gnuplot-5.0.6.tar.gz && \
 cd gnuplot-5.0.6 && \
 ./configure && \
 make && \
-make install
+make install && \
+cd ..;rm -rf gnuplot-5.0.6.tar.gz; rm -rf gnuplot-5.0.6
+
+
+# install java
+RUN  cd /usr/local/src && \
+curl -L -C - -b "oraclelicense=accept-securebackup-cookie" -O http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.tar.gz && \
+tar -zxvf jdk-8u121-linux-x64.tar.gz -C /opt && \
+alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_121/bin/jar 1 && \
+alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_121/bin/javac 1 && \
+alternatives --install /usr/bin/java java /opt/jdk1.8.0_121/bin/java 1 && \
+alternatives --set jar /opt/jdk1.8.0_121/bin/jar && \
+alternatives --set javac /opt/jdk1.8.0_121/bin/javac && \
+alternatives --set java /opt/jdk1.8.0_121/bin/java && \
+rm -rf jdk-8u121-linux-x64.tar.gz
 
 # Add docker account
 RUN useradd docker && echo "docker:docker" | chpasswd && \
@@ -120,6 +134,7 @@ echo "sudo ldconfig" >> /home/docker/.bashrc
 ADD .vimrc /home/docker/
 ADD .flake8 /home/docker/
 ADD oam_sample.tar.gz /home/docker/
+RUN mv /home/docker/oam_sample /home/docker/oam
 
 RUN chmod +x /tmp/devenv.sh && \
 sed -i -e "s/Defaults    requiretty.*/ #Defaults    requiretty/g" /etc/sudoers && \
@@ -151,7 +166,6 @@ RUN su - docker -c "mkdir -p ~/.vim/colors && cd ~/.vim/colors; \
     wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492;\
     cd ~/.vim/bundle;git clone https://github.com/scrooloose/nerdtree.git"
 
-RUN mv /home/docker/oam_sample /home/docker/oam
 USER docker
 WORKDIR /home/docker
 
