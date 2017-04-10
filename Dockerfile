@@ -25,7 +25,7 @@ yum -y install sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap
 yum -y install make automake gcc gcc-c++ kernel-devel git-core && \
 yum -y install wget tar sudo hg unzip which tree && \
 yum -y install openssh* net-snmp-utils nmap tcpdump && \
-yum -y install cairo-devel pango-devel
+yum -y install cairo-devel pango-devel telnet
 # Install MySQL
 RUN yum -y localinstall http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm && \
 yum -y install mysql-community-server && \
@@ -78,14 +78,15 @@ RUN /usr/local/bin/pip install --upgrade pip && \
 /usr/local/bin/easy_install-2.7 virtualenv && \
 cd /usr/local/src && wget -O python-smpplib.zip https://github.com/podshumok/python-smpplib/archive/master.zip && \
 unzip python-smpplib.zip && mv python-smpplib-master python-smpplib && \
-cd python-smpplib && python2.7 setup.py install
+cd python-smpplib && python2.7 setup.py install && \
+cd ..;rm -f python-smpplib.zip;rm -rf python-smpplib
 
 # install mailsend
 RUN cd /usr/local/src && wget -O mailsend.zip https://github.com/muquit/mailsend/archive/master.zip && \
 unzip mailsend.zip && mv mailsend-master mailsend && \
 cd mailsend && /bin/sh ./configure --with-openssl=/usr && \
 make install && \
-cd ..;rm -rf mailsend
+cd ..;rm -f mailsend.zip;rm -rf mailsend
 
 # install vim
 RUN cd /usr/local/src && hg clone https://bitbucket.org/vim-mirror/vim vim && \
@@ -106,7 +107,6 @@ cd gnuplot-5.0.6 && \
 make && \
 make install && \
 cd ..;rm -rf gnuplot-5.0.6.tar.gz; rm -rf gnuplot-5.0.6
-
 
 # install java
 RUN  cd /usr/local/src && \
