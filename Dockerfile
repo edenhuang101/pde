@@ -110,14 +110,17 @@ cd ..;rm -rf gnuplot-5.0.6.tar.gz; rm -rf gnuplot-5.0.6
 
 # install java
 RUN  cd /usr/local/src && \
-curl -L -C - -b "oraclelicense=accept-securebackup-cookie" -O http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.tar.gz && \
+curl -L -C - -b "oraclelicense=accept-securebackup-cookie" \
+    -O http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.tar.gz && \
 tar -zxvf jdk-8u121-linux-x64.tar.gz -C /opt && \
 alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_121/bin/jar 1 && \
 alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_121/bin/javac 1 && \
 alternatives --install /usr/bin/java java /opt/jdk1.8.0_121/bin/java 1 && \
+alternatives --install /usr/bin/jps jps /opt/jdk1.8.0_121/bin/jps 1 && \
 alternatives --set jar /opt/jdk1.8.0_121/bin/jar && \
 alternatives --set javac /opt/jdk1.8.0_121/bin/javac && \
 alternatives --set java /opt/jdk1.8.0_121/bin/java && \
+alternatives --set jps /opt/jdk1.8.0_121/bin/jps && \
 rm -rf jdk-8u121-linux-x64.tar.gz
 
 # Add docker account
