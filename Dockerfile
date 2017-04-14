@@ -25,7 +25,13 @@ yum -y install sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap
 yum -y install make automake gcc gcc-c++ kernel-devel git-core && \
 yum -y install wget tar sudo hg unzip which tree && \
 yum -y install openssh* net-snmp-utils nmap tcpdump && \
-yum -y install cairo-devel pango-devel telnet
+yum -y install cairo-devel pango-devel telnet && \
+# Install perl package for percona-toolkit
+yum -y install perl-DBD-MySQL.x86_64 && \
+yum -y install perl-Time-HiRes.x86_64 && \
+yum -y install perl-IO-Socket-SSL && \
+yum -y install perl-TermReadKey.x86_64
+
 # Install MySQL
 RUN yum -y localinstall http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm && \
 yum -y install mysql-community-server && \
