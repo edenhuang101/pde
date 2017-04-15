@@ -117,7 +117,7 @@ make install && \
 cd ..;rm -rf gnuplot-5.0.6.tar.gz; rm -rf gnuplot-5.0.6
 
 # install gnuplot-py
-RUN cd /usr/local/src && git clone https://github.com/jrk/gnuplot-py.git
+RUN cd /usr/local/src && git clone https://github.com/jrk/gnuplot-py.git && \
 cd gnuplot-py/ && \
 python2.7 setup.py install && \
 cd ..;rm -rf gnuplot-py
