@@ -30,7 +30,9 @@ yum -y install cairo-devel pango-devel telnet && \
 yum -y install perl-DBD-MySQL.x86_64 && \
 yum -y install perl-Time-HiRes.x86_64 && \
 yum -y install perl-IO-Socket-SSL && \
-yum -y install perl-TermReadKey.x86_64
+yum -y install perl-TermReadKey.x86_64 && \
+# Install font for gnuplot
+yum -y install liberation-sans-fonts
 
 # Install MySQL
 RUN yum -y localinstall http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm && \
@@ -61,7 +63,7 @@ RUN /usr/local/bin/pip install --upgrade pip && \
 /usr/local/bin/pip install fabric && \
 /usr/local/bin/pip install ipython && \
 /usr/local/bin/pip install flake8 && \
-/usr/local/bin/pip install fake-factory && \
+/usr/local/bin/pip install install Faker>=0.7.0 && \
 /usr/local/bin/pip install MySQL-python && \
 /usr/local/bin/pip install python-daemon && \
 /usr/local/bin/pip install ecks && \
