@@ -32,7 +32,8 @@ yum -y install perl-Time-HiRes.x86_64 && \
 yum -y install perl-IO-Socket-SSL && \
 yum -y install perl-TermReadKey.x86_64 && \
 # Install font for gnuplot
-yum -y install liberation-sans-fonts
+yum -y install liberation-sans-fonts && \
+yum -y install dos2unix
 
 # Install MySQL
 RUN yum -y localinstall http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm && \
