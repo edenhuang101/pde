@@ -42,13 +42,13 @@ yum -y install mysql-community-devel && \
 rm -fr /var/cache/*
 
 # Install python
-RUN cd /usr/local/src && wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz && \
-tar -zxf Python-2.7.12.tgz && \
-cd Python-2.7.12 && \
+RUN cd /usr/local/src && wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz && \
+tar -zxf Python-2.7.13.tgz && \
+cd Python-2.7.13 && \
 ./configure --prefix=/usr/local --enable-unicode=ucs4 --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib" && \
 make && make altinstall && \
-cd ..;rm -f Python-2.7.12.tgz && \
-rm -rf Python-2.7.12 && \
+cd ..;rm -f Python-2.7.13.tgz && \
+rm -rf Python-2.7.13 && \
 # Install ezsetup and pip
 wget https://bootstrap.pypa.io/ez_setup.py -O - | /usr/local/bin/python2.7 && \
 /usr/local/bin/easy_install-2.7 pip
@@ -186,6 +186,11 @@ RUN su - docker -c "mkdir -p ~/.vim/colors && cd ~/.vim/colors; \
     mkdir -p ~/.vim/ftplugin;\
     wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492;\
     cd ~/.vim/bundle;git clone https://github.com/scrooloose/nerdtree.git"
+
+# for pip 9.0.1
+RUN su - docker -c "mkdir -p ~/.pip; \
+    echo "[list]" >> /home/docker/.pip/pip.conf;\
+    echo "format=columns" >> /home/docker/.pip/pip.conf"
 
 USER docker
 WORKDIR /home/docker
