@@ -124,9 +124,8 @@ python2.7 setup.py install && \
 cd ..;rm -rf gnuplot-py
 
 # install java
-RUN  cd /usr/local/src && \
-curl -L -C - -b "oraclelicense=accept-securebackup-cookie" \
-    -O http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.tar.gz && \
+RUN cd /usr/local/src && \
+curl -O http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-8u121-linux-x64.tar.gz && \
 tar -zxvf jdk-8u121-linux-x64.tar.gz -C /opt && \
 alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_121/bin/jar 1 && \
 alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_121/bin/javac 1 && \
