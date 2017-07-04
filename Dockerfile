@@ -144,6 +144,7 @@ echo 'docker    ALL=(ALL)   NOPASSWD:ALL' >> /etc/sudoers
 # Environment variables
 RUN echo "alias vi='/usr/local/bin/vim'" >> ~/.bashrc && \
 echo "alias vi='/usr/local/bin/vim'" >> /home/docker/.bashrc && \
+echo "export LD_LIBRARY_PATH=/usr/lib/oracle/11.2/client64/lib" >> ~/.bashrc && \
 echo "ldconfig" >> ~/.bashrc && \
 echo "sudo ldconfig" >> /home/docker/.bashrc
 
