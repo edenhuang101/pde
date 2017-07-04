@@ -64,7 +64,7 @@ RUN /usr/local/bin/pip install --upgrade pip && \
 /usr/local/bin/pip install fabric && \
 /usr/local/bin/pip install ipython && \
 /usr/local/bin/pip install flake8 && \
-/usr/local/bin/pip install install Faker>=0.7.0 && \
+# /usr/local/bin/pip install install Faker>=0.7.0 && \
 /usr/local/bin/pip install MySQL-python && \
 /usr/local/bin/pip install python-daemon && \
 /usr/local/bin/pip install ecks && \
