@@ -42,13 +42,13 @@ yum -y install mysql-community-devel && \
 rm -fr /var/cache/*
 
 # Install python
-RUN cd /usr/local/src && wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz && \
-tar -zxf Python-2.7.13.tgz && \
-cd Python-2.7.13 && \
+RUN cd /usr/local/src && wget https://www.python.org/ftp/python/2.7.14/Python-2.7.14.tgz && \
+tar -zxf Python-2.7.14.tgz && \
+cd Python-2.7.14 && \
 ./configure --prefix=/usr/local --enable-unicode=ucs4 --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib" && \
 make && make altinstall && \
-cd ..;rm -f Python-2.7.13.tgz && \
-rm -rf Python-2.7.13 && \
+cd ..;rm -f Python-2.7.14.tgz && \
+rm -rf Python-2.7.14 && \
 # Install ezsetup and pip
 wget https://bootstrap.pypa.io/ez_setup.py -O - | /usr/local/bin/python2.7 && \
 /usr/local/bin/easy_install-2.7 pip
@@ -85,6 +85,8 @@ RUN /usr/local/bin/pip install --upgrade pip && \
 /usr/local/bin/easy_install-2.7 "path.py==8.2.1" && \
 /usr/local/bin/easy_install-2.7 Ptable && \
 /usr/local/bin/easy_install-2.7 virtualenv && \
+/usr/local/bin/easy_install-2.7 ansible && \
+/usr/local/bin/easy_install-2.7 twilio && \
 cd /usr/local/src && wget -O python-smpplib.zip https://github.com/podshumok/python-smpplib/archive/master.zip && \
 unzip python-smpplib.zip && mv python-smpplib-master python-smpplib && \
 cd python-smpplib && python2.7 setup.py install && \
