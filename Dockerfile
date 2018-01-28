@@ -82,11 +82,11 @@ RUN /usr/local/bin/pip install --upgrade pip && \
 /usr/local/bin/pip install pysnmp && \
 /usr/local/bin/pip install requests && \
 /usr/local/bin/pip install numpy && \
+/usr/local/bin/pip install ansible && \
+/usr/local/bin/pip install twilio && \
 /usr/local/bin/easy_install-2.7 "path.py==8.2.1" && \
 /usr/local/bin/easy_install-2.7 Ptable && \
 /usr/local/bin/easy_install-2.7 virtualenv && \
-/usr/local/bin/easy_install-2.7 ansible && \
-/usr/local/bin/easy_install-2.7 twilio && \
 cd /usr/local/src && wget -O python-smpplib.zip https://github.com/podshumok/python-smpplib/archive/master.zip && \
 unzip python-smpplib.zip && mv python-smpplib-master python-smpplib && \
 cd python-smpplib && python2.7 setup.py install && \
