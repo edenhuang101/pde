@@ -127,17 +127,17 @@ cd ..;rm -rf gnuplot-py
 
 # install java
 RUN cd /usr/local/src && \
-curl -O http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-8u121-linux-x64.tar.gz && \
-tar -zxvf jdk-8u121-linux-x64.tar.gz -C /opt && \
-alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_121/bin/jar 1 && \
-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_121/bin/javac 1 && \
-alternatives --install /usr/bin/java java /opt/jdk1.8.0_121/bin/java 1 && \
-alternatives --install /usr/bin/jps jps /opt/jdk1.8.0_121/bin/jps 1 && \
-alternatives --set jar /opt/jdk1.8.0_121/bin/jar && \
-alternatives --set javac /opt/jdk1.8.0_121/bin/javac && \
-alternatives --set java /opt/jdk1.8.0_121/bin/java && \
-alternatives --set jps /opt/jdk1.8.0_121/bin/jps && \
-rm -rf jdk-8u121-linux-x64.tar.gz
+curl -O http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-8u162-linux-x64.tar.gz && \
+tar -zxvf jdk-8u162-linux-x64.tar.gz -C /opt && \
+alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_162/bin/jar 1 && \
+alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_162/bin/javac 1 && \
+alternatives --install /usr/bin/java java /opt/jdk1.8.0_162/bin/java 1 && \
+alternatives --install /usr/bin/jps jps /opt/jdk1.8.0_162/bin/jps 1 && \
+alternatives --set jar /opt/jdk1.8.0_162/bin/jar && \
+alternatives --set javac /opt/jdk1.8.0_162/bin/javac && \
+alternatives --set java /opt/jdk1.8.0_162/bin/java && \
+alternatives --set jps /opt/jdk1.8.0_162/bin/jps && \
+rm -rf jdk-8u162-linux-x64.tar.gz
 
 # Add docker account
 RUN useradd docker && echo "docker:docker" | chpasswd && \
