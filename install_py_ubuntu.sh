@@ -36,7 +36,7 @@ essentail_packages='kernel-devel gcc gcc-c++ make automake zlib-devel bzip2-deve
                     nmap tcpdump git mercurial wget tar unzip'
 for package_name in $essentail_packages
 do
-    if yum list installed "$package_name" >/dev/null 2>&1; then
+    if apt-cache show "$package_name" >/dev/null 2>&1; then
         echo $package_name "Installed"
     else
         echo $package_name "Not installed"
@@ -49,7 +49,7 @@ echo "Check mysql-devel packages ......."
 mysql_packages='mysql-devel MySQL-devel-community mysql-community-devel'
 for package_name in $mysql_packages
 do
-    if yum list installed "$package_name" >/dev/null 2>&1; then
+    if apt-cache show "$package_name" >/dev/null 2>&1; then
         echo $package_name "Installed"
 	is_mysql_dev_installed="True"
     fi
@@ -74,7 +74,7 @@ if [ -n "$unistanll_packages" ]; then
     echo -e "for now , these packages are not installed"
     echo -e "$unistanll_packages\n"
     echo "Installation command:"
-    echo "yum clean all && yum -y update && yum -y install $unistanll_packages"
+    echo "apt-get -y install $unistanll_packages"
 fi
 read -p "Press [Enter] key to continue... or Ctrl+C to cancel"
 
